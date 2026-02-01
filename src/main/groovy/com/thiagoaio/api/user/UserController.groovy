@@ -1,5 +1,6 @@
 package com.thiagoaio.api.user
 
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -8,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 class UserController {
 
     @Autowired
-    UserService userService
+    private UserService userService
 
-    @GetMapping('/{email}')
-    UserModel getById(@PathVariable("email") String email) {
-        userService.getByEmail(email)
+    @PostMapping()
+    public createUser(@RequestBody UserModel user) {
+        return userService.createUser(user);
     }
 }

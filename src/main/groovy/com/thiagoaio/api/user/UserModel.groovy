@@ -1,5 +1,6 @@
 package com.thiagoaio.api.user
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 
@@ -10,6 +11,7 @@ class UserModel {
 
     @Id
     @GeneratedValue
+    @JsonIgnore
     UUID id
 
     @Column(nullable = false)
@@ -21,6 +23,10 @@ class UserModel {
     @Column(nullable = false)
     String password
 
+    @Column(nullable = false)
+    Boolean active = false
+
     @CreationTimestamp
+    @JsonIgnore
     LocalDateTime createdAt
 }
