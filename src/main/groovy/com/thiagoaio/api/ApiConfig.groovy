@@ -14,6 +14,6 @@ class ApiConfig implements WebMvcConfigurer {
 
     @Override
     void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authGuard)
+        registry.addInterceptor(authGuard).excludePathPatterns("/error");
     }
 }

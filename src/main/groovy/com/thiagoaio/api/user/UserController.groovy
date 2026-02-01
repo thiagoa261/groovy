@@ -12,7 +12,7 @@ class UserController {
     private UserService userService
 
     @PostMapping()
-    public createUser(@RequestBody UserModel user) {
-        return userService.createUser(user);
+    public createUser(@RequestBody UserModel body) {
+        return userService.createUser(body);
     }
 }

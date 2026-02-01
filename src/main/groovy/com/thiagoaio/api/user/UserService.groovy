@@ -12,6 +12,10 @@ class UserService {
     @Autowired
     private UserRepository userRepository
 
+    UserModel findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
     ResponseEntity<?> createUser(UserModel user) {
         try {
             var existingUser = userRepository.findByEmail(user.getEmail());
