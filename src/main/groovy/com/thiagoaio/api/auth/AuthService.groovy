@@ -27,6 +27,9 @@ class AuthService {
             var user = userService.findByEmail(body.getEmail())
             if (user == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas.");
 
+            if (user.getActive() == false)
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário inativo.");
+
             if (!Utils.compareHash(body.getPassword(), user.getPassword()))
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas.");
 
@@ -60,6 +63,9 @@ class AuthService {
                     .build()
                     .parseClaimsJws(token)
                     .getBody()
+
+            var user = userService.findById(UUID.fromString(claims.getSubject()));
+            if (user == null || user.getActive() == false) return null;
 
             return claims.getSubject();
         } catch (Exception e) {

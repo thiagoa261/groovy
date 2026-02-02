@@ -16,6 +16,10 @@ class UserService {
         return userRepository.findByEmail(email);
     }
 
+    UserModel findById(UUID id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
     ResponseEntity<?> createUser(UserModel user) {
         try {
             var existingUser = userRepository.findByEmail(user.getEmail());
