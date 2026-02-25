@@ -25,10 +25,7 @@ class AuthGuard implements HandlerInterceptor {
 
             boolean isPublic = method.hasMethodAnnotation(PublicRoute) || method.beanType.isAnnotationPresent(PublicRoute)
 
-            if (isPublic) {
-                println "ROTA PUBLICA ${request.requestURI}"
-                return true
-            }
+            if (isPublic) return true;
         }
 
         String token = request.getHeader("Authorization");

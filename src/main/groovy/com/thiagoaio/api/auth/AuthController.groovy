@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 class AuthController {
 
     @Autowired
-    AuthService authService
+    private AuthService authService
 
     @PublicRoute
     @PostMapping('/login')
