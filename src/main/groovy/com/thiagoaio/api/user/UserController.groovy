@@ -1,6 +1,7 @@
 package com.thiagoaio.api.user
 
-import org.springframework.http.ResponseEntity
+import com.thiagoaio.api.user.dto.UserDto
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +13,7 @@ class UserController {
     private UserService userService
 
     @PostMapping()
-    public createUser(@RequestBody UserModel body) {
+    public createUser(@Valid @RequestBody UserDto body) {
         return userService.createUser(body);
     }
 }
